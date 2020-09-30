@@ -19,8 +19,8 @@
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
+import { redirectToGithubOAuth } from "@/utils/account";
 import PageView from "@/mixins/page";
-import { GITHUB_CLIENT_ID } from "@/constants";
 
 @Component({
   head() {
@@ -40,10 +40,7 @@ class LoginPage extends Mixins(PageView) {
   }
 
   login() {
-    const url = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=user&redirect_uri=${encodeURIComponent(
-      "http://localhost:3000/auth/github/callback",
-    )}`;
-    window.location.href = url;
+    redirectToGithubOAuth();
   }
 }
 export default LoginPage;

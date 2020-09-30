@@ -4,7 +4,19 @@
     <template v-if="!loading">
       <f-panel padding="16" elevation="low" class="asset mb-4">
         <template v-if="connectedMixin">
-          Connected
+          <div class="body-2 text-center mb-4">
+            You've connected with Mixin Messenger
+          </div>
+          <div class="text-center">
+            <v-btn
+              rounded
+              depressed
+              color="primary"
+              :disabled="!connectedMixin"
+              @click="withdraw"
+              >Withdraw</v-btn
+            >
+          </div>
         </template>
         <template v-else>
           <div class="body-2 text-center mb-4">
@@ -47,15 +59,6 @@
               <div class="body-1">{{ asset.symbol }}</div>
               <div class="body-2 text--secondary">{{ asset.name }}</div>
             </div>
-            <v-spacer />
-            <v-btn
-              rounded
-              depressed
-              outlined
-              color="primary"
-              :disabled="!connectedMixin"
-              >Withdraw</v-btn
-            >
           </div>
           <div class="mt-2 mb-0">
             <div class="title">{{ parseFloat(asset.balance).toFixed(8) }}</div>
@@ -72,7 +75,8 @@ import { Component, Mixins } from "vue-property-decorator";
 import { State } from "vuex-class";
 import PageView from "@/mixins/page";
 import Base64 from "@/utils/base64.js";
-import { ASSET_ALLOW_LIST, MIXIN_CLIENT_ID } from "@/constants";
+import { ASSET_ALLOW_LIST } from "@/constants";
+import { redirectToMixinOAuth } from "@/utils/account";
 
 @Component({
   head() {
@@ -124,11 +128,11 @@ class UserPage extends Mixins(PageView) {
   }
 
   connect() {
-    const redirect = { name: "profile-balance" };
-    const url = `https://mixin.one/oauth/authorize?client_id=${MIXIN_CLIENT_ID}&scope=PROFILE:READ&response_type=code&state=${Base64.encode(
-      JSON.stringify({ redirect }),
-    )}`;
-    window.location.href = url;
+    redirectToMixinOAuth({ name: "profile-balance" });
+  }
+
+  async withdraw() {
+    await this.$apis.withdraw();
   }
 
   async mounted() {

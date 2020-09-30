@@ -2,9 +2,11 @@
   <v-app>
     <top-bar />
     <v-main>
-      <template v-if="breadcrumbItems.length > 1">
-        <v-breadcrumbs divider="/" :items="breadcrumbItems"></v-breadcrumbs>
-      </template>
+      <v-container class="pa-0 my-0">
+        <template v-if="breadcrumbItems.length > 1">
+          <v-breadcrumbs divider="/" :items="breadcrumbItems"></v-breadcrumbs>
+        </template>
+      </v-container>
       <nuxt />
     </v-main>
     <toast />
@@ -62,6 +64,25 @@ class DefaultLayout extends Vue {
           },
           { text: "Donate", disabled: true },
         ];
+      case "profile":
+        return [
+          { text: "Home", disabled: false, to: "/" },
+          {
+            text: "Profile",
+            disabled: true,
+          },
+        ];
+      case "profile-balance":
+        return [
+          { text: "Home", disabled: false, to: "/" },
+          {
+            text: "Profile",
+            disabled: false,
+            exact: true,
+            to: { name: "profile" },
+          },
+          { text: "Balance", disabled: true },
+        ];
       default:
         return [];
     }
@@ -77,6 +98,7 @@ class DefaultLayout extends Vue {
         this.setAuthInfo(authInfo);
         this.setProfile(profile);
       } catch (e) {
+        console.log(e);
         this.setToken("");
       }
     }

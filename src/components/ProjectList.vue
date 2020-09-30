@@ -1,13 +1,13 @@
 <template>
   <div>
     <f-loading :loading="loading" :fullscreen="true" />
-    <v-list
+    <div
       v-infinite-scroll="loadData"
       infinite-scroll-disabled="loadMoreDisabled"
       infinite-scroll-distance="10"
-      dense
+      class="list"
     >
-      <div v-if="projects.length === 0 && !loading" class="">
+      <div v-if="projects.length === 0 && !loading">
         <f-tip v-if="filters.length" type="warning mt-2">
           {{
             $t("com.course_list.empty_hint_with_filters", {
@@ -19,15 +19,15 @@
           {{ $t("com.course_list.empty_hint") }}
         </f-tip>
       </div>
-      <v-list-item
+      <div
         v-else
         v-for="project in projects"
         :key="project.id"
-        class="px-0"
+        class="px-0 project-wrapper"
       >
         <project-item :project="project" @click="gotoProject" />
-      </v-list-item>
-    </v-list>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -75,3 +75,19 @@ class ProjectList extends Vue {
 }
 export default ProjectList;
 </script>
+<style lang="scss" scoped>
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  .project-wrapper {
+    width: 335px;
+    margin-right: 16px;
+  }
+  @media only screen and (max-device-width: 736px) {
+    .project-wrapper {
+      width: 100%;
+      margin-right: 0px;
+    }
+  }
+}
+</style>

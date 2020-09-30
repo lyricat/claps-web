@@ -3,6 +3,7 @@ import { NuxtAppOptions } from "@nuxt/types";
 import createApis from "./apis/index";
 import Http from "@/services/http";
 import { API_BASE } from "@/constants";
+import { redirectToGithubOAuth } from "@/utils/account";
 
 function generateStructureInterceptor(app: NuxtAppOptions) {
   return [
@@ -16,7 +17,7 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
       if (error.response && error.response.data) {
         const status = error.response.status;
         if (status === 401) {
-          app.store!.dispatch("auth/logout");
+          redirectToGithubOAuth();
         }
         const { code, message } = error.response.data;
         return Promise.reject({ code, message });

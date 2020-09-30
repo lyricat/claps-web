@@ -1,6 +1,6 @@
 <template>
   <f-panel padding="0" elevation="low" class="project mb-4" :class="type">
-    <div v-if="type === 'default'" @click="click">
+    <div v-if="type === 'default'" @click="click" class="">
       <div class="top d-flex align-center mt-2 px-4 mb-2 ">
         <div class="avatar mt-0">
           <v-avatar><v-img :src="project.avatar_url" :size="48"/></v-avatar>
@@ -97,14 +97,6 @@ export default ProjectItem;
 
 <style lang="scss">
 .project {
-  &.default {
-    width: 335px;
-  }
-  @media only screen and (max-device-width: 736px) {
-    &.default {
-      width: 100%;
-    }
-  }
   .title {
     text-transform: capitalize;
   }

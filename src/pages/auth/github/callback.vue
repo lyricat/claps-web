@@ -13,7 +13,7 @@ class GithubAuthPage extends Vue {
 
   async mounted() {
     const code = this.$route.query.code;
-    let redirectRouteName = "index";
+    let redirectRouteName = "profile";
 
     if (this.$route.query.state) {
       try {

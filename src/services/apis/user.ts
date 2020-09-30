@@ -21,5 +21,9 @@ export default function(http: Http) {
     getMyAssets() {
       return http.get(`/user/assets`);
     },
+
+    withdraw() {
+      return http.post(`/user/withdraw`);
+    },
   };
 }
