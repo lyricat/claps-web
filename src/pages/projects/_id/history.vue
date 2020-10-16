@@ -69,7 +69,8 @@ class ProjectHistoryPage extends Mixins(PageView) {
     const projectName = this.$route.params.id;
     this.projectInfo = await this.$apis.getProject(projectName);
 
-    this.transactions = await this.$apis.getProjectTransactions(projectName);
+    const resp = await this.$apis.getProjectTransactions(projectName);
+    this.transactions = resp.transactions;
 
     const ret = {};
     for (let ix = 0; ix < this.transactions.length; ix++) {

@@ -83,6 +83,17 @@ class DefaultLayout extends Vue {
           },
           { text: "Balance", disabled: true },
         ];
+      case "profile-history":
+        return [
+          { text: "Home", disabled: false, to: "/" },
+          {
+            text: "Profile",
+            disabled: false,
+            exact: true,
+            to: { name: "profile" },
+          },
+          { text: "History", disabled: true },
+        ];
       default:
         return [];
     }

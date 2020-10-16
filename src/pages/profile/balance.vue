@@ -48,9 +48,9 @@
       </f-panel>
       <div class="assets">
         <f-panel
-          padding="16"
+          padding="0"
           elevation="low"
-          class="asset mb-4"
+          class="asset mb-4 px-4 py-2"
           v-for="asset in balanceAssets"
         >
           <div class="top d-flex align-center">
@@ -60,9 +60,32 @@
               <div class="body-2 text--secondary">{{ asset.name }}</div>
             </div>
           </div>
-          <div class="mt-2 mb-0">
-            <div class="title">{{ parseFloat(asset.balance).toFixed(8) }}</div>
-            <div class="body-2">${{ parseFloat(asset.total).toFixed(4) }}</div>
+          <v-divider class="mt-2" />
+          <div class="d-flex justify-space-between mt-2 mb-0">
+            <div class="label body-2">
+              Balance
+            </div>
+            <div class="amount">
+              <div class="body-2">
+                {{ parseFloat(asset.balance).toFixed(8) }}
+              </div>
+              <div class="caption text--secondary">
+                ${{ parseFloat(asset.balance_usd).toFixed(4) }}
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-space-between mt-1 mb-0">
+            <div class="label body-2">
+              Total
+            </div>
+            <div class="amount">
+              <div class="body-2">
+                {{ parseFloat(asset.total).toFixed(8) }}
+              </div>
+              <div class="caption text--secondary">
+                ${{ parseFloat(asset.total_usd).toFixed(4) }}
+              </div>
+            </div>
           </div>
         </f-panel>
       </div>
@@ -105,7 +128,7 @@ class UserPage extends Mixins(PageView) {
   }
 
   get balanceAssets() {
-    const ret = this.assets
+    let ret = this.assets
       .map((x) => {
         if (
           Object.prototype.hasOwnProperty.call(this.assetMap, x.asset_id) &&
@@ -115,11 +138,21 @@ class UserPage extends Mixins(PageView) {
           x.symbol = a.symbol;
           x.name = a.name;
           x.icon_url = a.icon_url;
+          x.total_usd = parseFloat(x.total) * parseFloat(a.price_usd);
+          x.balance_usd = parseFloat(x.balance) * parseFloat(a.price_usd);
           return x;
         }
         return null;
       })
       .filter((x) => x !== null);
+    ret = ret.sort((a, b) => {
+      if (a.balance_usd < b.balance_usd) {
+        return 1;
+      } else if (a.balance_usd > b.balance_usd) {
+        return -1;
+      }
+      return 0;
+    });
     return ret;
   }
 
@@ -133,9 +166,13 @@ class UserPage extends Mixins(PageView) {
 
   async withdraw() {
     await this.$apis.withdraw();
+    this.reload();
   }
 
   async mounted() {
+    await this.reload();
+  }
+  async reload() {
     this.loading = true;
     const resp = await this.$apis.getMyAssets();
     this.assets = resp.assets;

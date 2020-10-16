@@ -17,7 +17,7 @@
           {{ "Received" }}
           <em>${{ parseFloat(project.total).toFixed(4) }}</em>
           {{ "from" }}
-          <em>{{ project.donations }}</em>
+          <em>{{ project.donations || 0 }}</em>
           {{ "patrons" }}
         </div>
       </div>
@@ -27,7 +27,7 @@
         <div class="avatar mt-0">
           <v-avatar><v-img :src="project.avatar_url" :size="48"/></v-avatar>
         </div>
-        <div class="title">
+        <div class="title ml-2">
           {{ project.name }}
         </div>
       </div>
@@ -39,7 +39,7 @@
           {{ "Received" }}
           <em>${{ parseFloat(project.total).toFixed(4) }}</em>
           {{ "from" }}
-          <em>{{ project.donations }}</em>
+          <em>{{ project.donations || 0 }}</em>
           {{ "patrons" }}
         </div>
       </div>

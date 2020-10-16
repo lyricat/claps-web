@@ -14,6 +14,10 @@ export default function(http: Http) {
       return http.get(`/user/donation`);
     },
 
+    getMyTransfers() {
+      return http.get(`/user/transfers`);
+    },
+
     getMyProfile() {
       return http.get(`/user/profile`);
     },

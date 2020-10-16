@@ -34,12 +34,12 @@ export const mutations = {
 export const actions: ActionTree<ProjectsState, {}> = {
   async loadProjects({ commit, state }, { reload } = { reload: false }) {
     const offset = reload ? 0 : state.projects.length;
-    const projects = await this.$apis.getProjects({
+    const resp = await this.$apis.getProjects({
       offset,
       limit: ITEMS_PER_PAGE,
       keywords: state.searchValue,
     });
-    const incoming = projects;
+    const incoming = resp.projects;
     commit("SET_HAS_NEXT", incoming.length === ITEMS_PER_PAGE);
     commit(
       "SET_PROJECTS",
