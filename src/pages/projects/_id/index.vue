@@ -2,45 +2,50 @@
   <v-container>
     <f-loading v-if="loading" :loading="loading" />
     <template v-if="project && !loading">
-      <project-item :project="project" type="full" />
+      <v-row>
+        <v-col cols="12" sm="12" md="8">
+          <project-item :project="project" type="full" />
+        </v-col>
+        <v-col cols="12" sm="12" md="4">
+          <f-panel padding="0" elevation="low" class="detail mb-4">
+            <div class="overline px-4 mt-2">MEMBERS</div>
+            <v-list>
+              <v-list-item v-for="mem in members" :key="mem.id">
+                <v-list-item-avatar>
+                  <v-img :src="mem.avatar_url" />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{ mem.display_name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle> {{ mem.email }} </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </f-panel>
 
-      <f-panel padding="0" elevation="low" class="detail mb-4">
-        <div class="overline px-4 mt-2">MEMBERS</div>
-        <v-list>
-          <v-list-item v-for="mem in members" :key="mem.id">
-            <v-list-item-avatar>
-              <v-img :src="mem.avatar_url" />
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ mem.display_name }}
-              </v-list-item-title>
-              <v-list-item-subtitle> {{ mem.email }} </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </f-panel>
-
-      <f-panel padding="0" elevation="low" class="detail mb-4">
-        <div class="overline px-4 mt-2">REPOSITORIES</div>
-        <v-list>
-          <v-list-item v-for="repo in repositories" @click="gotoRepo(repo)">
-            <v-list-item-content>
-              <v-list-item-title class="body-1"
-                >{{ repo.name }}
-              </v-list-item-title>
-              <v-list-item-subtitle class="body-2">
-                {{ repo.slug }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-            <v-list-item-icon>
-              <v-icon>
-                {{ $icons.mdiChevronRight }}
-              </v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-        </v-list>
-      </f-panel>
+          <f-panel padding="0" elevation="low" class="detail mb-4">
+            <div class="overline px-4 mt-2">REPOSITORIES</div>
+            <v-list>
+              <v-list-item v-for="repo in repositories" @click="gotoRepo(repo)">
+                <v-list-item-content>
+                  <v-list-item-title class="body-1"
+                    >{{ repo.name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="body-2">
+                    {{ repo.slug }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-icon>
+                  <v-icon>
+                    {{ $icons.mdiChevronRight }}
+                  </v-icon>
+                </v-list-item-icon>
+              </v-list-item>
+            </v-list>
+          </f-panel>
+        </v-col>
+      </v-row>
     </template>
   </v-container>
 </template>

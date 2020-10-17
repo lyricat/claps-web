@@ -13,7 +13,7 @@
         {{ project.description }}
       </div>
       <div class="donation mb-4 px-4">
-        <div class="meta body-1 d-flex align-center text--secondary">
+        <div class="meta body-2 d-flex align-center text--secondary">
           {{ "Received" }}
           <em>${{ parseFloat(project.total).toFixed(4) }}</em>
           {{ "from" }}
@@ -31,11 +31,11 @@
           {{ project.name }}
         </div>
       </div>
-      <div class="content body-1 text--secondary px-4 mb-2">
+      <div class="content body-2 text--secondary px-4 mb-2">
         {{ project.description }}
       </div>
       <div class="donation mb-2 px-4">
-        <div class="meta body-1 d-flex align-center text--secondary">
+        <div class="meta body-2 d-flex align-center text--secondary">
           {{ "Received" }}
           <em>${{ parseFloat(project.total).toFixed(4) }}</em>
           {{ "from" }}

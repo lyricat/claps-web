@@ -16,14 +16,14 @@
         </nuxt-link>
         <v-spacer />
         <div class="search-wrapper">
-          <v-text-field
+          <!-- <v-text-field
             flat
             dense
             solo
             :hide-details="true"
             label="type to search"
             rounded
-          />
+          /> -->
         </div>
         <v-spacer />
         <v-menu
@@ -95,6 +95,12 @@ class TopBar extends Vue {
         title: "Submit Opensource Projects",
         subtitle: "Let your supporters to financially support them",
         link: "https://forms.gle/9Q43AnyzzKUnJRpT6",
+        show: true,
+      },
+      {
+        title: "About Claps",
+        subtitle: "Funding open source in a better way",
+        link: "about",
         show: true,
       },
       {

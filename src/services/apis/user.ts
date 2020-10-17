@@ -14,8 +14,10 @@ export default function(http: Http) {
       return http.get(`/user/donation`);
     },
 
-    getMyTransfers() {
-      return http.get(`/user/transfers`);
+    getMyTransfers(offset, limit) {
+      return http.get(`/user/transfers`, {
+        params: { offset, limit },
+      });
     },
 
     getMyProfile() {

@@ -8,15 +8,8 @@
       class="list"
     >
       <div v-if="projects.length === 0 && !loading">
-        <f-tip v-if="filters.length" type="warning mt-2">
-          {{
-            $t("com.course_list.empty_hint_with_filters", {
-              filters: filters.join(", "),
-            })
-          }}
-        </f-tip>
-        <f-tip v-else type="info" class="mt-2">
-          {{ $t("com.course_list.empty_hint") }}
+        <f-tip type="info" class="mt-2">
+          {{ "No project" }}
         </f-tip>
       </div>
       <div

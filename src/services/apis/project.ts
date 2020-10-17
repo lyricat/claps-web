@@ -12,8 +12,10 @@ export default function(http: Http) {
       return http.get(`/projects/${name}`);
     },
 
-    getProjectTransactions(name) {
-      return http.get(`/projects/${name}/transactions`);
+    getProjectTransactions(id, offset, limit) {
+      return http.get(`/projects/${id}/transactions`, {
+        params: { offset, limit },
+      });
     },
 
     getProjectBotAsset({ botId, assetId }) {
