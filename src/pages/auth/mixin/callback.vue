@@ -17,11 +17,10 @@ class GithubAuthPage extends Vue {
 
     setTimeout(async () => {
       console.log(this.authInfo);
-      const resp = await this.$apis.mixinOAuth({
+      await this.$apis.mixinOAuth({
         code: code as string,
         state: this.authInfo.randomUid,
       });
-      this.setToken(resp.token);
 
       this.$router.push({ name: "profile-balance" });
     }, 100);
