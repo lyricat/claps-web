@@ -61,7 +61,7 @@
                 </v-list-item-avatar>
                 <v-list-item-content>
                   <v-list-item-title class="body-1">
-                    {{ proj.display_name }}
+                    {{ proj.name }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
                     {{ proj.description }}

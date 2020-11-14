@@ -58,7 +58,7 @@
         <template #subheader> </template>
         <div class="text-center px-4">
           <div class="body-1 mb-2">
-            Transfer to followed BTC address
+            Transfer to followed address
           </div>
           <div class="body-1 mb-4">
             <v-text-field
@@ -83,8 +83,8 @@
           </div>
           <f-qr-code :text="donateAddress" class="mb-2" />
           <f-tip type="warning" class="mb-2">
-            Use the address to donate in Bitcoin network. It may take 30 mins to
-            be confirmed.
+            Use the address to donate in {{ selectedAsset.symbol }} network. It
+            may take several minutes to be confirmed.
           </f-tip>
         </div>
       </f-bottom-sheet>
@@ -205,9 +205,11 @@ class ProjectDonatePage extends Mixins(PageView) {
       },
     ];
     if (this.projectInfo) {
-      return this.projectInfo.botIds.map((x) => {
-        return Object.assign({ id: x.id }, ret[x.distribution]);
-      });
+      for (let ix = 0; ix < this.projectInfo.botIds.length; ix++) {
+        const bot = this.projectInfo.botIds[ix];
+        ret[parseInt(bot.distribution)]["id"] = bot.id;
+      }
+      return ret;
     }
     return [];
   }
@@ -246,7 +248,7 @@ class ProjectDonatePage extends Mixins(PageView) {
   async updateBotAssetInfo() {
     if (this.algorithms && this.algorithms.length && this.selectedAsset) {
       this.botAssetInfo = await this.$apis.getProjectBotAsset({
-        botId: this.algorithms[this.selectedAlgorithm].id,
+        botId: (this.algorithms[this.selectedAlgorithm] as any).id,
         assetId: this.selectedAsset.id,
       });
     }

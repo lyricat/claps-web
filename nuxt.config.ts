@@ -24,7 +24,14 @@ const config: Configuration = {
         content: process.env.npm_package_description || "",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        href: "/favicon.png",
+      },
+    ],
   },
   loading: { color: "#fff" },
   css: ["~/styles/index.scss"],

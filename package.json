@@ -1,8 +1,8 @@
 {
-  "name": "nuxt-ts-template",
+  "name": "claps-dev-web",
   "version": "1.0.0",
-  "description": "nuxt template starter",
-  "author": "divisey",
+  "description": "Claps.dev's official website",
+  "author": "lyric",
   "private": true,
   "config": {
     "nuxt": {

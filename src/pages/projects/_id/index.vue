@@ -28,6 +28,11 @@
             <div class="overline px-4 mt-2">REPOSITORIES</div>
             <v-list>
               <v-list-item v-for="repo in repositories" @click="gotoRepo(repo)">
+                <v-list-item-avatar>
+                  <v-avatar size="32">
+                    <v-img width="32" :src="repoIcon(repo)" />
+                  </v-avatar>
+                </v-list-item-avatar>
                 <v-list-item-content>
                   <v-list-item-title class="body-1"
                     >{{ repo.name }}
@@ -93,6 +98,13 @@ class ProjectPage extends Mixins(PageView) {
       return this.projectInfo.repositories;
     }
     return [];
+  }
+
+  repoIcon(repo) {
+    if (repo.type === "GITHUB") {
+      return require("~/assets/images/repo_github.png");
+    }
+    require("~/assets/images/repo_git.png");
   }
 
   async mounted() {
