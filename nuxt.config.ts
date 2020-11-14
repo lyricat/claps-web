@@ -9,8 +9,8 @@ const config: Configuration = {
   },
   srcDir: "./src",
   head: {
-    titleTemplate: "%s - " + process.env.npm_package_name,
-    title: process.env.npm_package_name || "",
+    titleTemplate: "Claps.dev",
+    title: "",
     meta: [
       { charset: "utf-8" },
       {

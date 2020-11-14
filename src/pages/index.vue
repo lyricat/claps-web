@@ -21,7 +21,7 @@ import ProjectList from "@/components/ProjectList.vue";
 })
 class IndexPage extends Mixins(PageView) {
   get title() {
-    return "hello";
+    return "Claps.dev";
   }
 }
 export default IndexPage;
