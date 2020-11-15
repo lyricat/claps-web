@@ -3,7 +3,7 @@
     <f-loading v-if="loading" :loading="loading" />
     <template v-if="!loading">
       <f-panel padding="16" elevation="low" class="asset mb-4">
-        <template v-if="!connectedMixin">
+        <template v-if="connectedMixin">
           <div class="text-center ma-2">
             <v-icon size="64" color="primary">
               {{ $icons.mdiCheckCircle }}
