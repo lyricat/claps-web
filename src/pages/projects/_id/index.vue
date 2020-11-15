@@ -1,9 +1,9 @@
 <template>
-  <v-container>
+  <v-container class="pt-0">
     <f-loading v-if="loading" :loading="loading" />
     <template v-if="project && !loading">
       <v-row>
-        <v-col cols="12" sm="12" md="8">
+        <v-col cols="12" sm="12" md="8" class="pt-0">
           <project-item :project="project" type="full" />
         </v-col>
         <v-col cols="12" sm="12" md="4">

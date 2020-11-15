@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <v-container class="pt-0">
     <f-loading v-if="loading" :loading="loading" />
     <template v-if="user && !loading">
       <v-row>
-        <v-col cols="12" sm="12" md="5" lg="4">
-          <f-panel padding="0" elevation="low" class="detail mb-4">
+        <v-col cols="12" sm="12" md="5" lg="4" class="pt-0">
+          <f-panel padding="0" elevation="low" class="detail ">
             <div class="top d-flex align-center mt-4 px-4 mb-2">
               <div class="avatar mt-0">
                 <v-avatar><v-img :src="user.avatar_url" :size="48"/></v-avatar>

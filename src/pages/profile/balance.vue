@@ -3,9 +3,15 @@
     <f-loading v-if="loading" :loading="loading" />
     <template v-if="!loading">
       <f-panel padding="16" elevation="low" class="asset mb-4">
-        <template v-if="connectedMixin">
+        <template v-if="!connectedMixin">
+          <div class="text-center ma-2">
+            <v-icon size="64" color="primary">
+              {{ $icons.mdiCheckCircle }}
+            </v-icon>
+          </div>
           <div class="body-2 text-center mb-4">
-            You've connected with Mixin Messenger
+            You've connected with Mixin Messenger. <br />
+            Tap "Withdraw" button to send all assets to your Mixin Messenger.
           </div>
           <div class="text-center">
             <v-btn
@@ -19,29 +25,37 @@
           </div>
         </template>
         <template v-else>
-          <div class="body-2 text-center mb-4">
-            Claps uses Mixin Network to store assets. Please connect with Mixin
-            Messenger to withdraw coins.
+          <div class="text-center ma-2">
+            <v-icon size="64">
+              {{ $icons.mdiFlashCircle }}
+            </v-icon>
           </div>
-          <div class="">
+          <div class="title text-center mb-2">
+            One more step to withraw
+          </div>
+          <div class="body-2 text-center mb-4">
+            To reduce transfer fee, Claps.dev uses Mixin Network to transfer and
+            store assets.<br />
+            Please connect with Mixin Messenger to withdraw asset.
+          </div>
+          <div class="btns text-center mb-2">
             <v-btn
               class="download-btn mb-4"
               color="primary"
-              block
               depressed
               rounded
               outlined
               @click="download"
               >Download Mixin Messenger</v-btn
             >
+            <br />
             <v-btn
               class="download-btn"
               color="primary"
-              block
               depressed
               rounded
               @click="connect"
-              >Connect with Mixin</v-btn
+              >Connect w/ Mixin Messenger</v-btn
             >
           </div>
         </template>
@@ -192,7 +206,7 @@ export default UserPage;
   display: flex;
   flex-wrap: wrap;
   .asset {
-    width: 420px;
+    width: 370px;
     margin-right: 16px;
   }
   @media only screen and (max-device-width: 736px) {

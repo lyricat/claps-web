@@ -73,7 +73,7 @@ export default ProjectList;
   display: flex;
   flex-wrap: wrap;
   .project-wrapper {
-    width: 335px;
+    width: 370px;
     margin-right: 16px;
   }
   @media only screen and (max-device-width: 736px) {

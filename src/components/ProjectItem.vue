@@ -1,5 +1,5 @@
 <template>
-  <f-panel padding="0" elevation="low" class="project mb-4" :class="type">
+  <f-panel padding="0" elevation="low" class="project" :class="type">
     <div v-if="type === 'default'" @click="click" class="">
       <div class="top d-flex align-center mt-2 px-4 mb-2 ">
         <div class="avatar mt-0">
@@ -96,9 +96,23 @@ export default ProjectItem;
 </script>
 
 <style lang="scss">
+.default {
+  margin-bottom: 16px;
+}
 .project {
   .title {
     text-transform: capitalize;
+  }
+  .content {
+    height: 60px;
+    overflow: hidden;
+    text-emphasis: none;
+  }
+  @media only screen and (max-device-width: 736px) {
+    .content {
+      height: auto;
+      max-height: 60px;
+    }
   }
   .donation {
     em {
